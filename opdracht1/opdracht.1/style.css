@@ -1,0 +1,76 @@
+body {
+  font-family: "Nunito", sans-serif;
+  color: white;
+  background-color: black;
+  font-size: 0.9em;
+  text-align: center;
+  margin-top: 8em;
+}
+
+img {
+  max-width: 13em;
+  display: flex;
+}
+
+img#rood {
+  margin-left: 9em;
+}
+
+img#oranje {
+  margin-left: 14em;
+  margin-top: -8.5em;
+}
+
+img#geel {
+  margin-left: 14em;
+  margin-top: -4.3em;
+}
+
+img#groen {
+  margin-left: 7.4em;
+  margin-top: -8.3em;
+}
+
+img#blauw {
+  margin-left: 2.9em;
+  margin-top: -15.9em;
+}
+
+img#paars {
+  margin-left: 4.6em;
+  margin-top: -16.2em;
+}
+
+#button {
+  border: none;
+  display: flex;
+  text-decoration: none;
+  color: #656565;
+  margin-top: 13em;
+  text-align: center;
+  margin-left: 5.8em;
+  margin-right: 5em;
+  padding: 0.5em;
+  font-size: 1.4em;
+  background-color: #454545;
+  border-radius: 20em;
+}
+
+#button.active {
+  color: white;
+  background: #9f9f9f;
+}
+
+img#icon {
+  margin-left: 23em;
+  margin-top: -2.2em;
+}
+
+img#plaatjes {
+  margin-top: 2em;
+  max-width: 27em;
+}
+
+.hidden {
+  display: none;
+}
