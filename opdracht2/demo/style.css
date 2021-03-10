@@ -1,0 +1,29 @@
+body {
+  background-color: black;
+  color: whitesmoke;
+}
+
+#scrolling {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#photo {
+  max-width: 40em;
+  max-height: 25em;
+}
+button#forward,
+button#backward {
+  height: 4rem;
+}
+
+p {
+  text-align: center;
+}
+
+h1 {
+  font-family: "inter";
+  text-align: center;
+  font-size: 5em;
+}
