@@ -1,8 +1,94 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <title>Frontend voor Designer - Opdracht 3</title>
+    <meta charset="UTF-8" />
+    <title>Pokemon shuffle</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="//db.onlinewebfonts.com/c/f4d1593471d222ddebd973210265762a?family=Pokemon"
+      rel="stylesheet"
+      type="text/css"
+    />
   </head>
-
   <body>
+    <section></section>
+    <button onclick="setHttpRequest(null, true)">New pokemon</button>
+    <button id= 'heart' onclick="heartFunction">♥</button>
   </body>
 </html>
+
+<script>
+  const section = document.querySelector("section");
+
+  let requestURL = "https://pokeapi.co/api/v2/pokemon";
+  let request = new XMLHttpRequest();
+
+  //Kiest de pokemon random uit
+  function setHttpRequest(pokemonName = null, randomPokemon = false) {
+    if (randomPokemon) {
+      request.open("GET", requestURL);
+    } else {
+      request.open("GET", requestURL + "/" + pokemonName);
+    }
+
+    request.responseType = "json";
+    request.send();
+
+    request.onload = function () {
+      if (!randomPokemon) {
+        return setPokemon(request.response);
+      }
+
+      return getRandomPokemon(request.response);
+    };
+  }
+
+  //Zet de data in HTML elementen.
+  function setPokemon(response) {
+    removeChildElements();
+    createElement("h1", response.name);
+    createElement(
+      "img",
+      response.sprites.other["official-artwork"].front_default,
+      true
+    );
+    createElement("p", ["Height: "] + response.height + [" dm"]);
+    createElement("p", ["Weight: "] + response.weight + [" hg"]);
+    createElement(
+      "p",
+      ["Base experience: "] + response.base_experience + [" XP"]
+    );
+    createElement("p", ["Place in pokedex: "] + response.id);
+    createElement(
+      "p",
+      ["Pokemon ability: "] + response.abilities["0"].ability.name
+    );
+    createElement("p", ["Pokemon moves: "] + response.moves["0"].move.name);
+  }
+
+  //Kiest de pokemon random uit bij het klikken van de knop.
+  function getRandomPokemon(response) {
+    const randomPokemon =
+      response.results[Math.floor(Math.random() * response.results.length)];
+
+    setHttpRequest(randomPokemon.name);
+  }
+
+  //Ik kwam hier zelf niet uit, hulp gekregen van een vriend. Dit zorgde ervoor dat het plaatje (en d) tevoorschijn kwam
+  function createElement(elementName, content, isImage = false) {
+    const element = document.createElement(elementName);
+    if (isImage) {
+      element.src = content;
+    } else {
+      element.textContent = content;
+    }
+    section.appendChild(element);
+  }
+
+  //Bij elke nieuwe pokemon, wordt de vorige weggehaald.
+  function removeChildElements() {
+    while (section.firstChild) {
+      section.removeChild(section.firstChild);
+    }
+  }
+</script>
